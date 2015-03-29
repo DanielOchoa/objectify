@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/DanielOchoa/subjectify",
   "devDependencies": {
-    "tape": "^3.5.0"
+    "tape": "3.5.0"
   }
 }
