@@ -4,7 +4,7 @@ var test = require('tape');
 var subjectify = require('../lib/subjectify');
 
 test('subjectify', function(t) {
-  t.plan(4);
+  t.plan(5);
 
   t.ok(subjectify, 'exists');
   t.equal(typeof subjectify, 'function', 'is a function');
@@ -30,6 +30,36 @@ test('subjectify', function(t) {
     st.deepEqual(simplePath, obj.some, 'returns first nested object.');
     st.notOk(noResults, 'Single path not found.');
 
+  });
+
+  t.test('exists', function(st) {
+    st.plan(7);
+
+    var obj = {a: {deep: {nested: {thing: 'aString'}}}};
+    var nestedAttrExists = subjectify(obj).exists('a.deep.nested.thing');
+    var anotherNestedAttr = subjectify(obj).exists('a.deep');
+    var yetAnotherNestedAttr = subjectify(obj).exists('a');
+    var falseNestedAttr  = subjectify(obj).exists('a.deep.wrong');
+
+    st.equal(nestedAttrExists, true, 'should be true.');
+    st.equal(anotherNestedAttr, true, 'should be true.');
+    st.equal(yetAnotherNestedAttr, true, 'should be true');
+    st.equal(falseNestedAttr, false, 'should be false.');
+
+    var falsyObj = {a: {nested: {falsy: false}}};
+    var falsyAttr = subjectify(falsyObj).exists('a.nested.falsy');
+
+    st.equal(falsyAttr, false, 'should be false.');
+
+    var truthyObj = {a: {nested: {truthy: true}}};
+    var truthyAttr = subjectify(truthyObj).exists('a.nested.truthy');
+
+    st.equal(truthyAttr, true, 'should be true.');
+
+    var undefinedExists = {a: {nested: {und: undefined}}};
+    var undefinedAttr = subjectify(undefinedExists).exists('a.nested.und');
+
+    st.equal(undefinedAttr, false, 'should be false.');
   });
 });
 
