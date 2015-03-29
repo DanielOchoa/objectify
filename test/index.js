@@ -4,10 +4,15 @@ var test = require('tape');
 var subjectify = require('../lib/subjectify');
 
 test('subjectify', function(t) {
-  t.plan(3);
+  t.plan(4);
 
   t.ok(subjectify, 'exists');
   t.equal(typeof subjectify, 'function', 'is a function');
+  t.throws(
+    subjectify.bind(null, 'nonObject'),
+    /You can only feed objects to subjectify./,
+    'Throws an error if a non-object is passed.'
+  );
 
   t.test('get', function(st) {
     st.plan(5);
