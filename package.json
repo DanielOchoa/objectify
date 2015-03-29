@@ -1,0 +1,31 @@
+{
+  "name": "subjectify",
+  "version": "0.0.1",
+  "description": "Easily check for nested properties of an object/array. Comes with setters and getters as wel.",
+  "main": "lib/subjectify.js",
+  "scripts": {
+    "test": "node tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/DanielOchoa/subjectify"
+  },
+  "keywords": [
+    "object",
+    "dot",
+    "notation",
+    "nested",
+    "javascript",
+    "node",
+    "npm"
+  ],
+  "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanielOchoa/subjectify/issues"
+  },
+  "homepage": "https://github.com/DanielOchoa/subjectify",
+  "devDependencies": {
+    "tape": "^3.5.0"
+  }
+}
