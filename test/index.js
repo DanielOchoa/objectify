@@ -15,7 +15,7 @@ test('subjectify', function(t) {
   );
 
   t.test('get', function(st) {
-    st.plan(5);
+    st.plan(6);
 
     var obj           = {some: {deeply: {nested: {obj: { here: 'exists' }}}}},
         nestedAttr    = subjectify(obj).get('some.deeply.nested.obj.here'),
@@ -29,6 +29,13 @@ test('subjectify', function(t) {
     st.deepEqual(nestedObj, obj.some.deeply.nested, 'returns nested object');
     st.deepEqual(simplePath, obj.some, 'returns first nested object');
     st.notOk(noResults, 'Single path not found');
+
+    var subject = subjectify({});
+    st.throws(
+      subject.get,
+      /You must pass a string argument to get()./,
+      'should throw an error if no argument is passed to get()'
+    );
   });
 
   t.test('exists', function(st) {
@@ -63,7 +70,7 @@ test('subjectify', function(t) {
 
 
   t.test('set', function(st) {
-    st.plan(5);
+    st.plan(7);
 
     var src = {};
     var setProperty = subjectify(src).set('a.very.nested.attr', true);
@@ -75,6 +82,19 @@ test('subjectify', function(t) {
     st.equal(src.a.different.thing, context, 'should be a string');
     st.equal(aString, context)
     st.ok(src.a.very.nested.attr, 'should be still set');
+
+    var subject = subjectify({});
+    st.throws(
+      subject.set,
+      /You must pass a string argument to set()./,
+      'Throws an error if no path is set'
+    );
+
+    st.throws(
+      subject.set.bind(null, 'a.b.c'),
+      /You must pass a second argument to set()./,
+      'Throws an error if no second argument is passed to set'
+    );
   });
 });
 
