@@ -52,18 +52,18 @@ test('objectify', function(t) {
     st.equal(yetAnotherNestedAttr, true, 'should be true');
     st.equal(falseNestedAttr, false, 'should be false');
 
-    var falsyObj = {a: {nested: {falsy: false}}};
-    var falsyAttr = objectify(falsyObj).isSet('a.nested.falsy');
+    var falseObj = {a: {nested: {falseAttr: false}}};
+    var falsyAttr = objectify(falseObj).isSet('a.nested.falseAttr');
 
-    st.equal(falsyAttr, false, 'should be false');
+    st.ok(falsyAttr, 'should return predicate as true (it exists even if false)');
 
     var truthyObj = {a: {nested: {truthy: true}}};
     var truthyAttr = objectify(truthyObj).isSet('a.nested.truthy');
 
     st.equal(truthyAttr, true, 'should be true');
 
-    var undefinedExists = {a: {nested: {und: undefined}}};
-    var undefinedAttr = objectify(undefinedExists).isSet('a.nested.und');
+    var asUndefined = {a: {nested: {und: undefined}}};
+    var undefinedAttr = objectify(asUndefined).isSet('a.nested.und');
 
     st.equal(undefinedAttr, false, 'should be false');
   });
