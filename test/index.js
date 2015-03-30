@@ -38,14 +38,14 @@ test('subjectify', function(t) {
     );
   });
 
-  t.test('exists', function(st) {
+  t.test('isSet', function(st) {
     st.plan(7);
 
     var obj = {a: {deep: {nested: {thing: 'aString'}}}};
-    var nestedAttrExists = subjectify(obj).exists('a.deep.nested.thing');
-    var anotherNestedAttr = subjectify(obj).exists('a.deep');
-    var yetAnotherNestedAttr = subjectify(obj).exists('a');
-    var falseNestedAttr  = subjectify(obj).exists('a.deep.wrong');
+    var nestedAttrExists = subjectify(obj).isSet('a.deep.nested.thing');
+    var anotherNestedAttr = subjectify(obj).isSet('a.deep');
+    var yetAnotherNestedAttr = subjectify(obj).isSet('a');
+    var falseNestedAttr  = subjectify(obj).isSet('a.deep.wrong');
 
     st.equal(nestedAttrExists, true, 'should be true');
     st.equal(anotherNestedAttr, true, 'should be true');
@@ -53,17 +53,17 @@ test('subjectify', function(t) {
     st.equal(falseNestedAttr, false, 'should be false');
 
     var falsyObj = {a: {nested: {falsy: false}}};
-    var falsyAttr = subjectify(falsyObj).exists('a.nested.falsy');
+    var falsyAttr = subjectify(falsyObj).isSet('a.nested.falsy');
 
     st.equal(falsyAttr, false, 'should be false');
 
     var truthyObj = {a: {nested: {truthy: true}}};
-    var truthyAttr = subjectify(truthyObj).exists('a.nested.truthy');
+    var truthyAttr = subjectify(truthyObj).isSet('a.nested.truthy');
 
     st.equal(truthyAttr, true, 'should be true');
 
     var undefinedExists = {a: {nested: {und: undefined}}};
-    var undefinedAttr = subjectify(undefinedExists).exists('a.nested.und');
+    var undefinedAttr = subjectify(undefinedExists).isSet('a.nested.und');
 
     st.equal(undefinedAttr, false, 'should be false');
   });
