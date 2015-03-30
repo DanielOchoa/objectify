@@ -1,4 +1,4 @@
-# Subjectify
+# Objectify
 
 This node library allows you to set, get or check for the predicate of a
 deeply nested objects.

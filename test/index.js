@@ -1,16 +1,16 @@
 'use strict';
 
 var test = require('tape');
-var subjectify = require('../lib/subjectify');
+var objectify = require('../lib/objectify');
 
-test('subjectify', function(t) {
+test('objectify', function(t) {
   t.plan(6);
 
-  t.ok(subjectify, 'exists');
-  t.equal(typeof subjectify, 'function', 'is a function');
+  t.ok(objectify, 'exists');
+  t.equal(typeof objectify, 'function', 'is a function');
   t.throws(
-    subjectify.bind(null, 'nonObject'),
-    /You can only feed objects to subjectify./,
+    objectify.bind(null, 'nonObject'),
+    /You can only feed objects to objectify./,
     'Throws an error if a non-object is passed'
   );
 
@@ -18,11 +18,11 @@ test('subjectify', function(t) {
     st.plan(6);
 
     var obj           = {some: {deeply: {nested: {obj: { here: 'exists' }}}}},
-        nestedAttr    = subjectify(obj).get('some.deeply.nested.obj.here'),
-        undefinedAttr = subjectify(obj).get('some.lost.attr.not.found'),
-        nestedObj     = subjectify(obj).get('some.deeply.nested'),
-        simplePath    = subjectify(obj).get('some'),
-        noResults     = subjectify(obj).get('lost');
+        nestedAttr    = objectify(obj).get('some.deeply.nested.obj.here'),
+        undefinedAttr = objectify(obj).get('some.lost.attr.not.found'),
+        nestedObj     = objectify(obj).get('some.deeply.nested'),
+        simplePath    = objectify(obj).get('some'),
+        noResults     = objectify(obj).get('lost');
 
     st.equal(nestedAttr, 'exists', 'returns the deeply nested attribute');
     st.equal(undefinedAttr, undefined, 'returns undefined if not found');
@@ -30,7 +30,7 @@ test('subjectify', function(t) {
     st.deepEqual(simplePath, obj.some, 'returns first nested object');
     st.notOk(noResults, 'Single path not found');
 
-    var subject = subjectify({});
+    var subject = objectify({});
     st.throws(
       subject.get,
       /You must pass a string argument to get()./,
@@ -42,10 +42,10 @@ test('subjectify', function(t) {
     st.plan(7);
 
     var obj = {a: {deep: {nested: {thing: 'aString'}}}};
-    var nestedAttrExists = subjectify(obj).isSet('a.deep.nested.thing');
-    var anotherNestedAttr = subjectify(obj).isSet('a.deep');
-    var yetAnotherNestedAttr = subjectify(obj).isSet('a');
-    var falseNestedAttr  = subjectify(obj).isSet('a.deep.wrong');
+    var nestedAttrExists = objectify(obj).isSet('a.deep.nested.thing');
+    var anotherNestedAttr = objectify(obj).isSet('a.deep');
+    var yetAnotherNestedAttr = objectify(obj).isSet('a');
+    var falseNestedAttr  = objectify(obj).isSet('a.deep.wrong');
 
     st.equal(nestedAttrExists, true, 'should be true');
     st.equal(anotherNestedAttr, true, 'should be true');
@@ -53,17 +53,17 @@ test('subjectify', function(t) {
     st.equal(falseNestedAttr, false, 'should be false');
 
     var falsyObj = {a: {nested: {falsy: false}}};
-    var falsyAttr = subjectify(falsyObj).isSet('a.nested.falsy');
+    var falsyAttr = objectify(falsyObj).isSet('a.nested.falsy');
 
     st.equal(falsyAttr, false, 'should be false');
 
     var truthyObj = {a: {nested: {truthy: true}}};
-    var truthyAttr = subjectify(truthyObj).isSet('a.nested.truthy');
+    var truthyAttr = objectify(truthyObj).isSet('a.nested.truthy');
 
     st.equal(truthyAttr, true, 'should be true');
 
     var undefinedExists = {a: {nested: {und: undefined}}};
-    var undefinedAttr = subjectify(undefinedExists).isSet('a.nested.und');
+    var undefinedAttr = objectify(undefinedExists).isSet('a.nested.und');
 
     st.equal(undefinedAttr, false, 'should be false');
   });
@@ -73,17 +73,17 @@ test('subjectify', function(t) {
     st.plan(7);
 
     var src = {};
-    var setProperty = subjectify(src).set('a.very.nested.attr', true);
+    var setProperty = objectify(src).set('a.very.nested.attr', true);
     st.equal(src.a.very.nested.attr, true, 'Set a very nested attribute in object');
     st.equal(setProperty, true, 'should be true');
 
     var context = 'iAmString';
-    var aString = subjectify(src).set('a.different.thing', context);
+    var aString = objectify(src).set('a.different.thing', context);
     st.equal(src.a.different.thing, context, 'should be a string');
     st.equal(aString, context)
     st.ok(src.a.very.nested.attr, 'should be still set');
 
-    var subject = subjectify({});
+    var subject = objectify({});
     st.throws(
       subject.set,
       /You must pass a string argument to set()./,
