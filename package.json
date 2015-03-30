@@ -1,6 +1,6 @@
 {
   "name": "node-objectify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easily check for nested properties of an object/array. Comes with setters and getters as wel.",
   "main": "lib/objectify.js",
   "scripts": {
