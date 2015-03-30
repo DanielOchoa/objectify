@@ -15,7 +15,7 @@ And it helps you avoid the popular `undefined is not a function` error.
 ## Examples
 
 ```javascript
-var objectify = require('objectify');
+var objectify = require('node-objectify');
 
 var src = {};
 
