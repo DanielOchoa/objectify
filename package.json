@@ -4,7 +4,7 @@
   "description": "Easily check for nested properties of an object/array. Comes with setters and getters as wel.",
   "main": "lib/objectify.js",
   "scripts": {
-    "test": "node tests/index.js"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
