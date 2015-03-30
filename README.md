@@ -1,4 +1,4 @@
-# Objectify
+# Objectify [![Build Status](https://travis-ci.org/DanielOchoa/objectify.svg?branch=master)](https://travis-ci.org/DanielOchoa/objectify)
 
 This node library allows you to set, get or check for the predicate of a
 deeply nested objects.
