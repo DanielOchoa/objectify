@@ -1,6 +1,6 @@
 # Objectify [![Build Status](https://travis-ci.org/DanielOchoa/objectify.svg?branch=master)](https://travis-ci.org/DanielOchoa/objectify)
 
-This node library allows you to set, get or check for the predicate of a
+This node library allows you to set, get or check for the predicate of
 deeply nested objects.
 
 It lets you avoid patterns such as:
