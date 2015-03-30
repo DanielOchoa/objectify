@@ -25,7 +25,8 @@ Check for the existence of a nested attribute:
 
 ```javascript
 if (objectify(src).isSet('a.very.deeply.nested.attr')) {
-  // do something with the nested attr
+  // true or false
+  // do something with the nested attr here
   console.log(src.a.very.deeply.nested.attr);
 }
 
@@ -38,6 +39,8 @@ Getting a long nested attribute:
 src = {a: {very: {deeply: {nested: { attr: 1 }}}}};
 
 objectify(src).get('a.very.deeply.nested.attr'); // returns 1
+
+objectify(src).get('a.non.existant.attr'); // returns undefined
 
 ```
 
