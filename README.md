@@ -5,8 +5,8 @@ deeply nested objects.
 
 It lets you avoid patterns such as:
 ```javascript
-if (myObj && myObj.options && myObject.options.site && myObject.options.site.url) {
-  // do something with myObject.options.site.url
+if (myObj.options && myObj.options.site && myObj.options.site.url) {
+  // do something with myObj.options.site.url
 }
 ```
 
