@@ -39,7 +39,7 @@ test('objectify', function(t) {
   });
 
   t.test('isSet', function(st) {
-    st.plan(7);
+    st.plan(8);
 
     var obj = {a: {deep: {nested: {thing: 'aString'}}}};
     var nestedAttrExists = objectify(obj).isSet('a.deep.nested.thing');
@@ -66,6 +66,11 @@ test('objectify', function(t) {
     var undefinedAttr = objectify(asUndefined).isSet('a.nested.und');
 
     st.equal(undefinedAttr, false, 'should be false');
+
+    var asZero = {a: {nested: {zero: 0}}};
+    var zeroAttr = objectify(asZero).isSet('a.nested.zero');
+
+    st.ok(zeroAttr, 'zero should be truthy');
   });
 
 
