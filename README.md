@@ -1,7 +1,7 @@
 # Objectify [![Build Status](https://travis-ci.org/DanielOchoa/objectify.svg?branch=master)](https://travis-ci.org/DanielOchoa/objectify)
 
 This node library allows you to set, get or check for the predicate of
-deeply nested objects.
+deep nested objects.
 
 It lets you avoid patterns such as:
 ```javascript
@@ -21,7 +21,7 @@ var src = {};
 
 ```
 
-Check for the existence of a nested attribute:
+Check for the existence of a nested property:
 
 ```javascript
 if (objectify(src).isSet('a.very.deeply.nested.attr')) {
@@ -32,7 +32,7 @@ if (objectify(src).isSet('a.very.deeply.nested.attr')) {
 
 ```
 
-Getting a long nested attribute:
+Get a nested property:
 
 ```javascript
 
@@ -44,7 +44,7 @@ objectify(src).get('a.non.existant.attr'); // returns undefined
 
 ```
 
-Setting a deep nested attribute:
+Set a nested property:
 
 ```javascript
 
